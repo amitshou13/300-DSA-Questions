@@ -1,5 +1,5 @@
 // Maximum and Minimum Element in an Array
-import java.util.*;
+// import java.util.*;
 
 public class MaxMin {
     static Pair getMinMax(long a[], long n) {

@@ -1,37 +1,30 @@
 public class PairWithSumInSortedRotatedArr {
-    static boolean pairInSortedRotated(int arr[], int n,
-                                       int x)
-    {
-        int i;
-        for (i = 0; i < n - 1; i++)
-            if (arr[i] > arr[i + 1])
-                break;
- 
-        int l = (i + 1) % n;
-        int r = i;
-
-        while (l != r) {
-            if (arr[l] + arr[r] == x)
+    public static boolean pairWithSum(int sum, int arr[]){
+        int idx=0;
+        for(int i=0;i<arr.length-1;i++){
+            if(arr[i]>arr[i+1])
+                idx=i;
+        }
+        int n=arr.length;
+        int i=(idx+1)%n;
+        int j=idx;
+        while(i!=j){
+            int s=arr[i]+arr[j];
+            if(s==sum){
                 return true;
-
-            if (arr[l] + arr[r] < x)
-                l = (l + 1) % n;
- 
-            else
-                r = (n + r - 1) % n;
+            }
+            else if(s<sum){
+                i=(i+1)%n;
+            }
+            else{
+                j=(n+j-1)%n;
+            }
         }
         return false;
     }
  
-    public static void main(String[] args)
-    {
-        int arr[] = { 11, 15, 6, 8, 9, 10 };
-        int X = 16;
-        int N = arr.length;
- 
-        if (pairInSortedRotated(arr, N, X))
-            System.out.print("true");
-        else
-            System.out.print("false");
+    public static void main(String[] args) {
+        int arr[]={11, 15, 26, 38, 9, 10};
+        System.out.println(pairWithSum(45, arr));
     }
 }
